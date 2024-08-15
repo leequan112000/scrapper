@@ -131,6 +131,7 @@ def count_tokens(text, model="gpt-4o"):
     return len(encoding.encode(text))
 
 async def main():
+    model = "gpt-4o"
     content = await crawl_website("https://www.recipharm.com/", max_pages=9999)
     # replace all the spaces and newlines with single space
     content = {url: re.sub(r'\s+', ' ', text) for url, text in content.items()}
@@ -141,14 +142,14 @@ async def main():
         f.write(combined_content)
     
     # Count tokens
-    token_count = count_tokens(combined_content)
+    token_count = count_tokens(combined_content, model)
     
     print(f"Combined content written to 'crawled_content.txt'")
     print(f"Total token count: {token_count}")
     
     # Estimate cost (assuming gpt-3.5-turbo pricing)
     estimated_cost = (token_count / 1000) * 0.002  # $0.002 per 1K tokens
-    print(f"Estimated cost for GPT-3.5-turbo: ${estimated_cost:.2f}")
+    print(f"Estimated cost for GPT-{model}: ${estimated_cost:.2f}")
     
     # read crawled_content.txt and pass it to the function
     print("Generating related services...")

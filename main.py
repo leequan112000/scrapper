@@ -147,7 +147,7 @@ async def main():
     print(f"Combined content written to 'crawled_content.txt'")
     print(f"Total token count: {token_count}")
     
-    # Estimate cost (assuming gpt-3.5-turbo pricing)
+    # Estimate cost (assuming pricing)
     estimated_cost = (token_count / 1000) * 0.002  # $0.002 per 1K tokens
     print(f"Estimated cost for GPT-{model}: ${estimated_cost:.2f}")
     
